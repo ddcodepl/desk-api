@@ -7,5 +7,7 @@ export default () => {
 
     api.get('/height', catchAsync(GeneralController.getHeight));
 
+    api.post('/set-height', catchAsync(GeneralController.setHeight));
+
     return api;
 };
