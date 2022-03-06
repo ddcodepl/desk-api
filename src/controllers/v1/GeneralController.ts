@@ -11,7 +11,23 @@ const GeneralController = {
 
     async setHeight(req: Request, res: Response, next: NextFunction) {
         const height = req.body.height;
-        const command = 'python3 ' + process.env.PI_DESK_PATH + '/setHeight.py ' + height;
+
+        if (!height) {
+            res.status(400).json({ error: 'Height is required' });
+            return;
+        }
+
+        if (parseInt(height) <= 72) {
+            res.status(400).json({ error: 'Height must be greater or equal to 72' });
+            return;
+        }
+
+        if (parseInt(height) > 120) {
+            res.status(400).json({ error: 'Max height is: 120' });
+            return;
+        }
+
+        const command = 'python3 ' + process.env.PI_DESK_PATH + '/set-height.py ' + height;
         await GeneralController.executeCommand(command);
         res.status(200).json({ height });
     },
