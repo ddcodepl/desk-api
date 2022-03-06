@@ -3,9 +3,10 @@ import * as fs from "fs";
 
 const GeneralController = {
     async getHeight(req: Request, res: Response, next: NextFunction) {
-        console.log(process.env.PI_DESK_PATH);
-        const filePath = process.env.PI_DESK_PATH + '/height.txt';
+
+        const filePath = 'height.txt';
         const height = await GeneralController.readFile(filePath);
+
         res.status(200).json({ height });
     },
 
