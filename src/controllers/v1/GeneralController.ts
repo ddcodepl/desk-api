@@ -12,19 +12,23 @@ const GeneralController = {
 
     async setHeight(req: Request, res: Response, next: NextFunction) {
         const height = req.body.height;
+        const config = {
+            minHeight: 72,
+            maxHeight: 115,
+        }
 
         if (!height) {
             res.status(400).json({ error: 'Height is required' });
             return;
         }
 
-        if (parseInt(height) <= 72) {
-            res.status(400).json({ error: 'Height must be greater or equal to 72' });
+        if (parseInt(height) < config.minHeight) {
+            res.status(400).json({ error: `Height must be greater or equal to ${config.minHeight}` });
             return;
         }
 
         if (parseInt(height) > 120) {
-            res.status(400).json({ error: 'Max height is: 120' });
+            res.status(400).json({ error: `Height must be less or equal to ${config.maxHeight}` });
             return;
         }
 
