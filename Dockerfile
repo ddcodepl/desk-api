@@ -6,7 +6,7 @@ COPY package*.json ./
 
 COPY . .
 
-EXPOSE 5555
+EXPOSE 5001
 
 RUN npm ci
 
