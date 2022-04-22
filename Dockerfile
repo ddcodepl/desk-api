@@ -1,12 +1,12 @@
-FROM node:14-alpine3.11
-RUN apk add g++ make python3 python3-dev
+FROM node:14
+RUN apk add g++ make python3 python3-dev git
 WORKDIR /app
 
 COPY package*.json ./
 
 COPY . .
 
-COPY ../desk /app/desk
+RUN git clone https://github.com/ddcodepl/PiDesk.git /app/desk
 
 ENV PI_DESK_PATH=/app/desk
 
