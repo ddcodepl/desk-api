@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:14-alpine
 RUN apk add g++ make python3 python3-dev git
 WORKDIR /app
 
