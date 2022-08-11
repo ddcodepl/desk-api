@@ -11,7 +11,7 @@ const GeneralController = {
     },
 
     async setHeight(req: Request, res: Response, next: NextFunction) {
-        const height = req.body.height;
+        const height = req.params.height ? req.params.height : req.body.height;
         const config = {
             minHeight: 72,
             maxHeight: 115,
